@@ -8,9 +8,14 @@ namespace Postagens.Models
 {
     public class PostModel
     {
-        public int UserId;
-        public int Id;
-        public string Title;
-        public string Body;
+        private int userId;
+        private int id;
+        private string title;
+        private string body;
+
+        public int UserId { get => userId; set => userId = value; }
+        public int Id { get => id; set => id = value; }
+        public string Title { get => title; set => title = value; }
+        public string Body { get => body; set => body = value; }
     }
 }
