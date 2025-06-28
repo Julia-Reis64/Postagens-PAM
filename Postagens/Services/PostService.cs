@@ -12,9 +12,10 @@ namespace Postagens.Services
     {
         string base_url = "https://jsonplaceholder.typicode.com";
         PostModel postagem;
+        List<PostModel> postagens;
         JsonSerializerOptions serializerOptions;
 
-        PostService() {
+        public PostService() {
             serializerOptions = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -22,14 +23,14 @@ namespace Postagens.Services
 
             };
         }
-        public async Task<PostModel> getPost()
+        public async Task<List<PostModel>> getPosts()
         {
             Uri uri = new Uri($"{base_url}/posts");
             HttpClient client = new HttpClient();
             HttpResponseMessage responseMessage = await client.GetAsync(uri);
             string content = await responseMessage.Content.ReadAsStringAsync();
-            postagem = JsonSerializer.Deserialize < PostModel >(content, serializerOptions);
-            return postagem;
+            postagens = JsonSerializer.Deserialize<List<PostModel>>(content, serializerOptions);
+            return postagens;
         }
     }
 }
